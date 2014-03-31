@@ -33,7 +33,11 @@ public class InputReader
         inputLine.length();
         String[] arrayStrings = inputLine.split(" ");
         String primeraCadena = arrayStrings[0];
-        
+        HashSet<String> setCadena = new HashSet<>();
+        String[] arrayString = inputLine.split(" ");
+        for( int i=0; i < arrayString.length; i++){
+            setCadena.add(arrayString[i]);
+        }
         return primeraCadena;
     }
 }
