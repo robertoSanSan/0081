@@ -47,8 +47,7 @@ public class Responder
         }
         
         
-        //int numeroObtenido = aleatorio.nextInt(respuestas.size());
-        //return respuestas.get (numeroObtenido);
+        
         return respuesta;
     }
 }
