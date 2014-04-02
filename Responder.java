@@ -54,19 +54,17 @@ public class Responder
      * Generate a response.
      * @return   A string that should be displayed as the response
      */
-    public String generateResponse(HashSet<String> userInput)
+    public String generateResponse(HashSet<String> specificResponse)
     {
         String respuesta = null;
-        respuesta = respuestaCoherente.get(userInput);
-        
-        if (respuesta == null)
-        {
-           
-            respuesta = respuestas.get(aleatorio.nextInt(respuestas.size()));
+        respuesta = respuestaCoherente.get(specificResponse);
+
+        if(respuestas.size() > 0){
+            int numeroAleatorio = aleatorio.nextInt(respuestas.size());
+            respuesta = respuestas.remove(numeroAleatorio);
+        }else{
+            respuesta = "No se ha entendido la frase del usuario.";
         }
-        
-        
-        
         return respuesta;
     }
 }
