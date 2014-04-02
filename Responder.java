@@ -17,23 +17,37 @@ public class Responder
      */
     Random aleatorio;
     ArrayList<String>respuestas;
-    HashMap<String, String> respuestaCoherente;
+    private HashMap<HashSet, String> respuestaCoherente;
+    private HashSet <String> coincidencias;
+    private HashSet <String> coincidencias2;
     
     public Responder()
     {
         aleatorio = new Random();
         respuestas = new ArrayList<>();
         respuestaCoherente = new HashMap<>();
+        coincidencias = new HashSet<>();
+        coincidencias2 = new HashSet<>();
+        
+        
+        coincidencias.add("free");
+        coincidencias.add("app");
+        coincidencias2.add("linux");
+        coincidencias2.add("crash");
+        coincidencias2.add("problem");
+        
+        respuestaCoherente.put(coincidencias, "la aplicacion es gratuita"); 
+        respuestaCoherente.put(coincidencias2, "el ordenador esta roto"); 
         respuestas.add("Estas seguro?");
         respuestas.add("necesita mas informacion?");
         respuestas.add("cual es tu sistema operativo?");
         respuestas.add("vale , estamos trabajando en el problema");
         respuestas.add("puede facilitarme mas informacion?");
-        respuestaCoherente.put("linux" , " que software no funciona?");
-        respuestaCoherente.put("si", "que tipo de fallo le esta sucediendo?");
-        respuestaCoherente.put("vale" , "le informaremos cuando hayamos acabado");
-        respuestaCoherente.put("windows" , " que software no funciona?");
-        respuestaCoherente.put("ok", "en algo mas le podemos ayudar?");
+        //respuestaCoherente.put("linux" , " que software no funciona?");
+        //respuestaCoherente.put("si", "que tipo de fallo le esta sucediendo?");
+        //respuestaCoherente.put("vale" , "le informaremos cuando hayamos acabado");
+        //respuestaCoherente.put("windows" , " que software no funciona?");
+        //respuestaCoherente.put("ok", "en algo mas le podemos ayudar?");
     }
 
     /**
@@ -42,15 +56,9 @@ public class Responder
      */
     public String generateResponse(HashSet<String> userInput)
     {
-        Iterator<String>iterator = userInput.iterator();
-        boolean buscando = true;
         String respuesta = null;
-        while(iterator.hasNext()&& buscando){
-            respuesta = respuestaCoherente.get(iterator.next());
-            if (respuesta!=null){
-                buscando = false;
-            }
-        }
+        respuesta = respuestaCoherente.get(userInput);
+        
         if (respuesta == null)
         {
            
