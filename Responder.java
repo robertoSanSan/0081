@@ -2,6 +2,7 @@ import java.util.Random;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 /**
  * The responder class represents a response generator object.
  * It is used to generate an automatic response to an input string.
@@ -17,6 +18,7 @@ public class Responder
     Random aleatorio;
     ArrayList<String>respuestas;
     HashMap<String, String> respuestaCoherente;
+    
     public Responder()
     {
         aleatorio = new Random();
@@ -40,13 +42,15 @@ public class Responder
      */
     public String generateResponse(HashSet<String> userInput)
     {
-      
+        Iterator<String>iterator = userInput.iterator();
+        boolean buscando = true;
         String respuesta = null;
-        String userInputString = "";
-        for(String elemento : userInput){
-            userInputString = elemento;
+        while(iterator.hasNext()&& buscando){
+            respuesta = respuestaCoherente.get(iterator.next());
+            if (respuesta!=null){
+                buscando = false;
+            }
         }
-        respuesta = respuestaCoherente.get(userInputString);
         if (respuesta == null)
         {
            

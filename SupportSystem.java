@@ -38,13 +38,13 @@ public class SupportSystem
         printWelcome();
 
         while(!finished) {
-            HashSet<String> userInput = reader.getInput;
+            HashSet<String> userInput = reader.getInput();
 
             if(userInput.contains("bye")) {
                 finished = true;
             }
             else {
-                String response = responder.generateResponse(input);
+                String response = responder.generateResponse(userInput);
                 System.out.println(response);
             }
         }
